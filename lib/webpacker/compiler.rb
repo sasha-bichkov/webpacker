@@ -64,9 +64,13 @@ class Webpacker::Compiler
     def run_webpack
       logger.info "Compiling..."
 
+      p webpack_env
+      p "#{RbConfig.ruby} ./bin/webpack --progress"
+      p File.expand_path(config.root_path)
+
       stdout, stderr, status = Open3.capture3(
         webpack_env,
-        "#{RbConfig.ruby} ./bin/webpack",
+        "#{RbConfig.ruby} ./bin/webpack --progress",
         chdir: File.expand_path(config.root_path)
       )
 
